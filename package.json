@@ -16,6 +16,7 @@
     "@angular/upgrade": "4.3.4",
     "angular-in-memory-web-api": "~0.3.0",
     "bluebird": "^3.5.0",
+    "connect-redis": "^3.3.0",
     "core-js": "^2.4.1",
     "ejs": "^2.5.7",
     "es6-promise": "^3.0.2",
@@ -34,7 +35,7 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
-    "jsonwebtoken": "^7.1.9",
+    "jsonwebtoken": "^7.4.3",
     "rc": "1.0.1",
     "reflect-metadata": "^0.1.2",
     "request": "^2.81.0",
@@ -43,8 +44,8 @@
     "sails-disk": "~0.10.9",
     "sails-mysql": "^0.11.5",
     "systemjs": "0.19.40",
-    "typescript": "2.3.4",
-    "zone.js": "^0.8.4"
+    "typescript": "^2.3.4",
+    "zone.js": "^0.8.17"
   },
   "scripts": {
     "tsc": "ntsc -p assets",
