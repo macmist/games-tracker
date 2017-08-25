@@ -8,11 +8,10 @@
     "experimentalDecorators": true,
     "lib": ["es2017", "dom" ],
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "types" : [ "node", "jasmine", "core-js" ]
+    "suppressImplicitAnyIndexErrors": true
     },
     "include": [
-      "../games/**/*.ts"
+	"./**/*.ts"
     ],
     "exclude": [
     ".tmp",
