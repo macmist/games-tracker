@@ -4,8 +4,8 @@ node_modules/
 bower_components/
 typings/
 
-client/**/*.js
-client/**/*.js.map
+assets/**/*.js
+assets/**/*.js.map
 
 .node_history
 
