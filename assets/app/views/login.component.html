@@ -1,0 +1,8 @@
+<div *ngIf="currentUser === undefined || currentUser == null; else elseBlock">
+  <h3>Login</h3>
+  <label>Login:</label><input #login/>
+  <label>Password:</label><input  #pass type="password"/>
+  <button (click)="log(login.value, pass.value)">Login</button>
+</div>
+<ng-template #elseBlock><div>Hello {{currentUser.login}}</div>
+<button (click)="disconnect()">Logout</button> </ng-template>

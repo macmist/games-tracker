@@ -1,0 +1,32 @@
+<div *ngIf="currentUser?.steamUrl == null; else elseBlock">
+  <label>SteamUrl:</label><input  #url/>
+  <button (click)="getSteamId(url.value)">Get id</button>
+</div>
+<ng-template #elseBlock>
+  <div>Your steam id: {{currentUser?.steamId}}</div>
+  <button (click)="getSteamGames()">Récupérer la liste mes jeux steams</button>
+</ng-template>
+<div *ngIf="currentUser !== null">
+  <h3>Ajouter un jeu</h3>
+  <form (ngSubmit)="addGame()" #form="ngForm">
+    <label>Nom:</label>
+    <input list="unownedGames" name="unownedGames" [(ngModel)]="newGame.gameName" name="gameName" autocomplete="off">
+    <datalist id="unownedGames">
+      <option *ngFor="let game of unownedGames" value="{{game}}">
+    </datalist>
+    <label>Jeu installé:</label>
+    <input type="checkbox" [checked]="newGame.installed" (change)="newGame.installed = !newGame.installed">
+    <button type="submit">Envoyer</button>
+  </form>
+  <button (click)="getUsergames()">Voir la liste de tous mes jeux</button>
+  <table>
+    <tr>
+      <th>Game</th>
+      <th>Installed</th>
+    </tr>
+    <tr *ngFor="let game of games">
+      <td>{{getGameName(game.game.id)}}</td>
+      <td><input type="checkbox" [checked]="game.installed"  (change)="updateGame(game)"/></td>
+    </tr>
+  </table>
+</div>

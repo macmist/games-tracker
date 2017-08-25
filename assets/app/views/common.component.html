@@ -1,0 +1,16 @@
+<h1>Games</h1>
+<div *ngIf="users !== undefined && users.length > 0">
+  <table>
+    <tr>
+      <th>Game/User</th>
+      <th *ngFor="let user of users" (click)="manageList(user.id)" [ngClass]="{'selected': checkedUser.indexOf(user.id) !== -1}">{{user.login}}</th>
+    </tr>
+    <tr *ngFor="let game of games">
+      <td>{{game}}</td>
+      <td *ngFor="let user of users">
+        <div *ngIf="game !== undefined && gamesMap.get(game).get(user.id) === 1; else elseBlock">installed</div>
+        <ng-template #elseBlock><div *ngIf="checkedUser.indexOf(user.id) !== -1">not installed</div></ng-template>
+      </td>
+    </tr>
+  </table>
+</div>
