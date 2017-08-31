@@ -70,6 +70,7 @@ module.exports = {
   },
 
   login: function (req, res) {
+
     let login = req.param('login');
     let pass = req.param('pass');
 
@@ -83,16 +84,16 @@ module.exports = {
       if (user.pass !== pass)
         return res.badRequest({err: 'No user found or wrong password'});
       let token = jwt.issue({id: user.id});
-      req.session.userid = user.id;
+      sails.session.userid = user.id;
       return res.json(200, {user: user, token: token});
     }).catch(err => res.serverError(err));
   },
 
   logout: function (req, res) {
-    if (!req.session.userid)
+    if (!sails.session.userid)
       return res.badRequest();
 
-    delete req.session.userid;
+    delete sails.session.userid;
     return res.end();
   },
 

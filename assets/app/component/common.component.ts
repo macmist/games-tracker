@@ -6,7 +6,7 @@ import {GameService} from "../services/game.service";
 @Component({
   selector: 'common',
   templateUrl: 'app/views/common.component.html',
-  styleUrls: ['app/styles/app.component.css']
+  styleUrls: ['app/styles/common.component.css']
 })
 export class CommonComponent implements  OnInit{
   users: User[];

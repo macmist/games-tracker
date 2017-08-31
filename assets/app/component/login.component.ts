@@ -5,7 +5,8 @@ import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'login',
-  templateUrl: 'app/views/login.component.html'
+  templateUrl: 'app/views/login.component.html',
+  styleUrls: ['app/styles/login.component.css']
 })
 export class LoginComponent implements OnInit {
   currentUser : User;

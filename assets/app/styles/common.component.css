@@ -1,0 +1,11 @@
+.common {
+  margin-top: 5%;
+}
+
+.user {
+  color: black;
+}
+
+.user:hover {
+  color:lightblue;
+}

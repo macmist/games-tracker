@@ -1,16 +1,25 @@
-<h1>Games</h1>
-<div *ngIf="users !== undefined && users.length > 0">
-  <table>
-    <tr>
-      <th>Game/User</th>
-      <th *ngFor="let user of users" (click)="manageList(user.id)" [ngClass]="{'selected': checkedUser.indexOf(user.id) !== -1}">{{user.login}}</th>
-    </tr>
-    <tr *ngFor="let game of games">
-      <td>{{game}}</td>
-      <td *ngFor="let user of users">
-        <div *ngIf="game !== undefined && gamesMap.get(game).get(user.id) === 1; else elseBlock">installed</div>
-        <ng-template #elseBlock><div *ngIf="checkedUser.indexOf(user.id) !== -1">not installed</div></ng-template>
-      </td>
-    </tr>
-  </table>
-</div>
+
+  <div class="common" *ngIf="users !== undefined && users.length > 0">
+    <h1>Jeux</h1>
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive table-striped">
+        <thead>
+          <tr>
+            <th>Game/User</th>
+            <th *ngFor="let user of users" (click)="manageList(user.id)" [ngClass]="{'color':true, 'user': true, 'table-success': checkedUser.indexOf(user.id) !== -1}">
+              {{user.login}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of games">
+            <th scope="row">{{game}}</th>
+            <td *ngFor="let user of users" [ngClass]="{'table-success': game !== undefined && gamesMap.get(game).get(user.id) === 1 }">
+              <div *ngIf="game !== undefined && gamesMap.get(game).get(user.id) === 1; else elseBlock">installed</div>
+              <ng-template #elseBlock><div *ngIf="checkedUser.indexOf(user.id) !== -1">not installed</div></ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

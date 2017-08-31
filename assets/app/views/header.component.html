@@ -1,5 +1,18 @@
-<nav>
-  <a routerLink="/home">Home</a>
-  <a routerLink="/profile">Profile</a>
+
+<nav class="navbar navbar-light bg-faded" role="navigation">
+
+  <div class="nav pull-xs-left">
+      <a class="navbar-brand" href="#">La récrétine</a>
+      <a routerLink="/home" class="nav-link">Maison</a>
+      <a routerLink="/profile" class="nav-link">Profil</a>
+  </div>
+    <ul class="nav">
+      <li><login></login></li>
+    </ul>
+
 </nav>
+
+<div class="container-fluid">
 <router-outlet></router-outlet>
+
+</div>

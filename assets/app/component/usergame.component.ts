@@ -53,6 +53,7 @@ export class UsergameComponent implements OnInit {
   getUsergames() {
     this.gameService.getUserGames(this.currentUser.id, this.userService.getToken()).then(ug => {
       this.games = ug;
+      this.getUnownedGames();
     }).catch(err => {});
   }
 
@@ -60,7 +61,7 @@ export class UsergameComponent implements OnInit {
     this.gameService.getUnownedGames(this.currentUser.id, this.userService.getToken()).then(res => {
 
       this.unownedGames = res.map(({name}) => name);
-    })
+    }).catch(err => {});
   }
 
   getSteamId(vanityUrl: string) {
@@ -104,8 +105,6 @@ export class UsergameComponent implements OnInit {
   }
 
   updateGame(game: UserGame) {
-    console.log(game.installed);
-    console.log(!game.installed);
     this.gameService.updateInstallation(this.userService.getToken(), game.id, !game.installed).then(res => {
       this.getUsergames();
     }).catch(err => {});
@@ -126,9 +125,7 @@ export class UsergameComponent implements OnInit {
 
       this.currentUser.steamUrl = vanityUrl;
       this.currentUser.steamId = obj.response.steamid;
-      console.log(this.currentUser.steamId);
       this.userService.updateUser(this.currentUser).then(obj => {
-        console.log(obj);
         this.currentUser = obj;
       })
     });

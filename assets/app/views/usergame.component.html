@@ -1,3 +1,4 @@
+
 <div *ngIf="currentUser?.steamUrl == null; else elseBlock">
   <label>SteamUrl:</label><input  #url/>
   <button (click)="getSteamId(url.value)">Get id</button>
@@ -12,7 +13,7 @@
     <label>Nom:</label>
     <input list="unownedGames" name="unownedGames" [(ngModel)]="newGame.gameName" name="gameName" autocomplete="off">
     <datalist id="unownedGames">
-      <option *ngFor="let game of unownedGames" value="{{game}}">
+      <option *ngFor="let ugame of unownedGames" value="{{ugame}}">
     </datalist>
     <label>Jeu installé:</label>
     <input type="checkbox" [checked]="newGame.installed" (change)="newGame.installed = !newGame.installed">
@@ -25,8 +26,9 @@
       <th>Installed</th>
     </tr>
     <tr *ngFor="let game of games">
-      <td>{{getGameName(game.game.id)}}</td>
+      <td>{{getGameName(game.game?.id)}}</td>
       <td><input type="checkbox" [checked]="game.installed"  (change)="updateGame(game)"/></td>
     </tr>
   </table>
 </div>
+
