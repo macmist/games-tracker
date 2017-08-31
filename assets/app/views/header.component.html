@@ -3,8 +3,8 @@
 
   <div class="nav pull-xs-left">
       <a class="navbar-brand" href="#">La récrétine</a>
-      <a routerLink="/home" class="nav-link">Maison</a>
-      <a routerLink="/profile" class="nav-link">Profil</a>
+      <a *ngIf="currentUser != null" routerLink="/home" class="nav-link">Maison</a>
+      <a *ngIf="currentUser != null" routerLink="/profile" class="nav-link">Profil</a>
   </div>
     <ul class="nav">
       <li><login></login></li>

@@ -27,6 +27,10 @@ module.exports.policies = {
     'logout': true,
     'getCurrentUser': true
   },
+   'UserGameController' : {
+    'findForUsers' : true,
+   },
+
   /***************************************************************************
   *                                                                          *
   * Default policy for all controllers and actions (`true` allows public     *

@@ -1,34 +1,50 @@
-
-<div *ngIf="currentUser?.steamUrl == null; else elseBlock">
-  <label>SteamUrl:</label><input  #url/>
-  <button (click)="getSteamId(url.value)">Get id</button>
+<div class="steamInfos">
+  <div *ngIf="currentUser?.steamUrl == null; else elseBlock">
+    <div class="form-inline">
+      <input  #url placeholder="Steam Url" class="form-control"/>
+      <button (click)="getSteamId(url.value)"  type="button" class="btn btn-outline-success">Récupérer mon identifiant steam</button>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div>Ton identifiant steam:
+      <span class="steamId">{{currentUser?.steamId}}</span>
+    </div>
+    <button (click)="getSteamGames()" class="btn btn-outline-secondary down">Récupérer la liste mes jeux steams</button>
+  </ng-template>
 </div>
-<ng-template #elseBlock>
-  <div>Your steam id: {{currentUser?.steamId}}</div>
-  <button (click)="getSteamGames()">Récupérer la liste mes jeux steams</button>
-</ng-template>
-<div *ngIf="currentUser !== null">
-  <h3>Ajouter un jeu</h3>
-  <form (ngSubmit)="addGame()" #form="ngForm">
-    <label>Nom:</label>
-    <input list="unownedGames" name="unownedGames" [(ngModel)]="newGame.gameName" name="gameName" autocomplete="off">
-    <datalist id="unownedGames">
-      <option *ngFor="let ugame of unownedGames" value="{{ugame}}">
-    </datalist>
-    <label>Jeu installé:</label>
-    <input type="checkbox" [checked]="newGame.installed" (change)="newGame.installed = !newGame.installed">
-    <button type="submit">Envoyer</button>
-  </form>
-  <button (click)="getUsergames()">Voir la liste de tous mes jeux</button>
-  <table>
-    <tr>
-      <th>Game</th>
-      <th>Installed</th>
-    </tr>
-    <tr *ngFor="let game of games">
-      <td>{{getGameName(game.game?.id)}}</td>
-      <td><input type="checkbox" [checked]="game.installed"  (change)="updateGame(game)"/></td>
-    </tr>
-  </table>
-</div>
+<div class="games">
+  <div *ngIf="currentUser !== null">
+    <div class="newGame">
+      <h3>Ajouter un jeu</h3>
+      <div class="form-inline down">
+        <form (ngSubmit)="addGame()" #form="ngForm" class="form-inline  ">
+          <input list="unownedGames" name="unownedGames" [(ngModel)]="newGame.gameName" name="gameName" autocomplete="off" placeholder="Nom du jeu" class="form-control mb-2 mr-sm-2 mb-sm-0">
+          <datalist id="unownedGames">
+            <option *ngFor="let ugame of unownedGames" value="{{ugame}}">
+          </datalist>
+          <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" [checked]="newGame.installed" (change)="newGame.installed = !newGame.installed">
+              Je l'ai installé sur mon pécé
+            </label>
+          </div>
+          <button type="submit" class="btn btn-outline-success">Je dispose de ce jeu</button>
+        </form>
+      </div>
+    </div>
 
+    <div class="gameList">
+      <button (click)="getUsergames(); showTable = !showTable" class="btn btn-outline-secondary">Voir la liste de tous mes jeux</button>
+      <table class="table table-bordered table-responsive table-striped down" *ngIf="showTable == true">
+        <tr>
+          <th>Game</th>
+          <th>Installed</th>
+        </tr>
+        <tr *ngFor="let game of games">
+          <td>{{getGameName(game.game?.id)}}</td>
+          <td><input type="checkbox" [checked]="game.installed"  (change)="updateGame(game)"/></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

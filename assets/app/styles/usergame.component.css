@@ -1,0 +1,26 @@
+.steamInfos {
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.games {
+  margin-top: 2%;
+}
+
+.newGame {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.gameList {
+  margin-top: 20px;
+}
+
+.steamId {
+  font-style: italic;
+  color: lightblue;
+}
+
+.down {
+  margin-top: 20px;
+}

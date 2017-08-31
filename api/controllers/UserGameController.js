@@ -86,7 +86,7 @@ module.exports = {
 
     let q = 'select game.name, usergame.user, usergame.installed from usergame join game on game.id = usergame.game\n' +
             'where usergame.user = ' + ids[0] + '\n' +
-            'order by usergame.installed;';
+            'order by usergame.installed desc;';
 
 
     let g = 'select game.name, user, installed, t.installations from usergame \n' +

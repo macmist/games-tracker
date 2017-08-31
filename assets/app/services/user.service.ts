@@ -3,6 +3,7 @@ import { User } from '../model/user';
 import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {noUndefined} from "@angular/compiler/src/util";
+import {Router} from "@angular/router";
 
 
 
@@ -14,7 +15,8 @@ export class UserService {
   currentUser : User;
   token: string;
 
-  constructor(@Inject(Http) private http: Http) {
+  constructor(@Inject(Http) private http: Http,
+              @Inject(Router) private router: Router) {
   }
 
   userChanged() {
@@ -49,11 +51,13 @@ export class UserService {
         localStorage.removeItem('token');
         // window.location.replace('/');
         this.userChanged();
+        this.router.navigate(['home']);
       }).catch(a => {
         this.currentUser = null;
         localStorage.removeItem('token');
         // window.location.replace('/');
         this.userChanged();
+        this.router.navigate(['home']);
       });
   }
 

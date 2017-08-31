@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { UserService} from "../services/user.service";
 import {User} from "../model/user";
 import {GameService} from "../services/game.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'common',
@@ -13,6 +14,8 @@ export class CommonComponent implements  OnInit{
   checkedUser: number[] = [];
   res : any[] = [];
   games: any[] = [];
+  currentUser : User;
+  private subscription: Subscription;
 
   gamesMap : Map<string, Map<number, number>> = new Map<string, Map<number, number>>();
   constructor(private userService : UserService,
@@ -25,6 +28,10 @@ export class CommonComponent implements  OnInit{
 
   ngOnInit() : void {
     this.getUsers();
+    this.userService.getCurrentUser().then(user => {this.currentUser = user;});
+    this.subscription = this.userService.userEvents.subscribe((newUser: User) => {
+      this.currentUser = newUser;
+    });
   }
 
   manageList(i : number) : void {

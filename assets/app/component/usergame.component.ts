@@ -9,7 +9,8 @@ import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'usergame',
-  templateUrl: 'app/views/usergame.component.html'
+  templateUrl: 'app/views/usergame.component.html',
+  styleUrls: ['app/styles/usergame.component.css']
 })
 export class UsergameComponent implements OnInit {
   currentUser : User;
@@ -17,6 +18,7 @@ export class UsergameComponent implements OnInit {
   steamGames: any[];
   unownedGames: string[];
   newGame: {[k: string]: any}  = {};
+  showTable: boolean = false;
   private subscription: Subscription;
 
   constructor(private userService: UserService,
